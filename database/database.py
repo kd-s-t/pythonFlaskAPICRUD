@@ -22,6 +22,8 @@ class Database:
 		  host   = self.__localhost,
 		  user   = self.__username,
 		  passwd = self.__password,
+	      port   = 8889,
+  		  raise_on_warnings = True
 		)
 
 		cursor = db.cursor()
@@ -44,7 +46,9 @@ class Database:
 		  host     = self.__localhost,
 		  user     = self.__username,
 		  passwd   = self.__password,
-		  database = self.__database_name
+		  database = self.__database_name,
+	      port     = 8889,
+  		  raise_on_warnings = True
 		)
 
 		self.__db = db

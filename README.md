@@ -3,8 +3,15 @@
 python v3.7.3    
 
 # Requirements
-pip install mysql-connector-python  
-pip install -U flask-cors  
+`pip install mysql-connector-python`  
+`pip install -U flask-cors`  
+
+# Configure
+open `index.py` and edit `setLocalhost`, `Database`, `setUsername`, `setPassword`, `setTableName` and `PORT`    
+<img src="assets/img/migrate.png" width="30%">   
+
+open `controller/Users.py` and edit `setLocalhost`, `Database`, `setUsername`, `setPassword`, `setTableName` and `PORT`    
+<img src="assets/img/users.png" width="30%">   
 
 # Operations  
 
@@ -12,9 +19,6 @@ pip install -U flask-cors
 * Read    
 * Update    
 * Delete   
-
-# Configure
-open `.env` and edit  `LOCALHOST`, `DATABASE`, `USER`, `PASSWORD` and `TABLE_NAME`
 
 # Usage  
 ```

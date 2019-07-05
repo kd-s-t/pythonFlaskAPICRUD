@@ -1,14 +1,17 @@
 import mysql.connector
 import os
+from flask import jsonify
 
 class Users:
 
+
 	def __init__(self):
-		self.__localhost     = os.environ.get('LOCALHOST')
-		self.__username      = os.environ.get('USER')
-		self.__password      = os.environ.get('PASSWORD')
-		self.__database_name = os.environ.get('DATABASE')
-		self.__table_name 	 = os.environ.get('TABLE_NAME')
+		self.__localhost     = 'localhost'
+		self.__username      = 'root'
+		self.__password      = 'root'
+		self.__database_name = 'python_flask_api_crudv2'
+		self.__table_name 	 = 'customers'
+		self.__port          = 8889
 		self.createConnection()
 
 	def create(self, name, address):
@@ -28,10 +31,17 @@ class Users:
 		cursor = self.__db.cursor()
 
 		cursor.execute("SELECT * FROM "+self.__table_name+"")
-
+		
 		myresult = cursor.fetchall()
+		payload = []
+		content = {}
 
-		return myresult
+		for result in myresult:
+			content = {'id': result[0], 'name': result[1], 'address': result[2]}
+			payload.append(content)
+			content = {}
+
+		return payload
 
 	def get(self, id):
 		cursor = self.__db.cursor()
@@ -93,7 +103,9 @@ class Users:
 		  host     = self.__localhost,
 		  user     = self.__username,
 		  passwd   = self.__password,
-		  database = self.__database_name
+		  database = self.__database_name,
+		  port     = self.__port
 		)
+
 
 		self.__db = db

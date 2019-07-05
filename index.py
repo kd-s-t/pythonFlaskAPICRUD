@@ -14,11 +14,7 @@ CORS(app)
 def home():
     return jsonify({
     	"status": "success",
-        "LOCALHOST": os.environ.get('LOCALHOST'),
-        "User": os.environ.get('USER'),
-        "PASSWORD": os.environ.get('PASSWORD'),
-        "DATABASE": os.environ.get('DATABASE'),
-        "TABLE_NAME": os.environ.get('TABLE_NAME')
+        "message": "Welcome to Flask API"
     })
 
 @app.route("/users/create", methods=['POST'])
@@ -80,13 +76,13 @@ def delete(id):
 
 @app.route("/migrate", methods=['GET'])
 def migrate():
-    connection = db.Database(os.environ.get('DATABASE'))
-    connection.setLocalhost(os.environ.get('LOCALHOST'))
-    connection.setUsername(os.environ.get('USER'))
-    connection.setPassword(os.environ.get('PASSWORD'))
+    connection = db.Database('python_flask_api_crudv2')
+    connection.setLocalhost('localhost')
+    connection.setUsername('root')
+    connection.setPassword('root')
     connection.createDatabase()
 
-    connection.setTableName(os.environ.get('TABLE_NAME'))
+    connection.setTableName('customers')
     connection.createTable()
 
     return jsonify({
